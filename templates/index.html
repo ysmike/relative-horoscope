@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>The Blunt Horoscope</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header text-center">
+            <h1>The Blunt Horoscope</h1>
+            <medium>Welcome! Select your zodiac sign to read your daily horoscope.</medium>
+        </div>
+        <div class="row justify-content-md-center">
+
+            <div class="col-md-auto">
+                <div class="card text-black">
+                    <img class="card-img-top" src="{{ url_for('static', filename='img/aquarius-759.jpg') }}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Aquarius</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text">Jan 20 - Feb 18</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div class="card text-black">
+                    <img class="card-img-top" src="{{ url_for('static', filename='img/pisces-759.jpg') }}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Pisces</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text">Feb 19 - Mar 20</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div class="card text-black">
+                    <img class="card-img-top" src="{{ url_for('static', filename='img/aries-759.jpg') }}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Aries</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text">Mar 21 - Apr 19</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div class="card text-black">
+                    <img class="card-img-top" src="{{ url_for('static', filename='img/taurus-759.jpg') }}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Taurus</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text">Apr 20 - May 20</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <div class="card text-black">
+                    <img class="card-img-top" src="{{ url_for('static', filename='img/gemini-759.jpg') }}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Gemini</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text">May 21 - June 20</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div class="card text-black">
+                    <img class="card-img-top" src="{{ url_for('static', filename='img/cancer-759.jpg') }}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Cancer</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text">June 21 - July 22</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div class="card text-black">
+                    <img class="card-img-top" src="{{ url_for('static', filename='img/leo-759.jpg') }}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Leo</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text">July 23 - Aug 22</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div class="card text-black">
+                    <img class="card-img-top" src="{{ url_for('static', filename='img/virgo-759.jpg') }}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Virgo</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text">Aug 23 - Sept 22</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <div class="card text-black">
+                    <img class="card-img-top" src="{{ url_for('static', filename='img/libra-759.jpg') }}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Libra</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text">Sept 23 - Oct 22</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div class="card text-black">
+                    <img class="card-img-top" src="{{ url_for('static', filename='img/scorpio-759.jpg') }}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Scorpio</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text">Oct 23 - Nov 21</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div class="card text-black">
+                    <img class="card-img-top" src="{{ url_for('static', filename='img/sagittarius-759.jpg') }}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Sagittarius</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text">Nov 22 - Dec 21</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div class="card text-black">
+                    <img class="card-img-top" src="{{ url_for('static', filename='img/capricorn-759.jpg') }}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">Capricorn</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text">Dec 22 - Jan 19</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+    </div>
+
+    <script type="application/javascript">
+        $('.card').click(function () {
+            location.href = "/" + $(this).find('.card-title').html();
+        });
+    </script>
+</body>
+
+</html>

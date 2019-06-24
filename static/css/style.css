@@ -1,0 +1,31 @@
+@font-face { 
+	font-family: "GoogleSans"; 
+	src: url('../fonts/GoogleSans-Regular.ttf'); 
+}
+
+body {
+    font-family: "GoogleSans";
+}
+
+.card {
+    width: 15rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    cursor: pointer;
+    transition: box-shadow .3s;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-img-top {
+    width: 14.9rem;
+    height: 14.9rem;
+    object-fit: cover;
+}
+
+.card-title {
+    font-weight: bold;
+    color:#0080AD;
+}
