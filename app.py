@@ -122,12 +122,18 @@ def horoscope(sign):
     # call cacher
     cache_horoscope()
 
+    # change numbers from cardinals to ordinals
+    ordinal = (
+        lambda n: f"""{n}{ {1:"st",2:"nd",3:"rd"}.get(n if n<20 else n%10, "th") }"""
+    )
+
     # fetch horoscope from API
     return render_template(
         "horoscope.html",
         zodiac_sign=sign,
         zodiac_logo=logo,
         details=zodiac_cached[sign],
+        ordinal=ordinal,
     )
 
 
