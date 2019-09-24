@@ -1,31 +1,36 @@
-@font-face { 
-	font-family: "GoogleSans"; 
-	src: url('../fonts/GoogleSans-Regular.ttf'); 
+@font-face {
+  font-family: "GoogleSans";
+  src: url("../fonts/GoogleSans-Regular.ttf");
 }
 
 body {
-    font-family: "GoogleSans";
+  font-family: "GoogleSans";
 }
 
 .card {
-    width: 15rem;
-    margin-top: .5rem;
-    margin-bottom: .5rem;
-    cursor: pointer;
-    transition: box-shadow .3s;
+  width: 15rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
 }
 
 .card:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.hoverdisabled:hover {
+  box-shadow: none;
+  cursor: auto;
 }
 
 .card-img-top {
-    width: 14.9rem;
-    height: 14.9rem;
-    object-fit: cover;
+  width: 14.9rem;
+  height: 14.9rem;
+  object-fit: cover;
 }
 
 .card-title {
-    font-weight: bold;
-    color:#0080AD;
+  font-weight: bold;
+  color: #0080ad;
 }
