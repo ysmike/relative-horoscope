@@ -2,56 +2,61 @@
 <html lang="en">
 
 <head>
-  <title>{{ zodiac_sign }}</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}" type="image/x-icon">
-  <link rel="icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}" type="image/x-icon">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <title>{{ zodiac_sign }}</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="shortcut icon"
+          href="{{ url_for('static', filename='favicon/favicon.ico') }}"
+          type="image/x-icon">
+    <link rel="icon"
+          href="{{ url_for('static', filename='favicon/favicon.ico') }}"
+          type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 </head>
 
 <body>
     <div class="container">
-      <div class="page-header text-center">
-        <h1>{{ zodiac_sign }}</h1>
-        <large style="color:lightslategray">Today's rank:</large>
-        <h2 style="color:{{ details.color }};">{{ ordinal(details.rank) }}</h2>
-      </div>
-      <div class="row justify-content-md-center">
-        <div class="col-md-auto">
-          <div class="card text-black hoverdisabled">
-            <img
-              class="card-img-top"
-              src="{{ zodiac_logo }}"
-              alt="Card image"
-            />
-            <div class="card-img-overlay">
-              <h5 class="card-title">{{ zodiac_sign }}</h5>
-            </div>
-            <div class="card-footer text-center">
-              <p class="card-text">{{ details.date }}</p>
-            </div>
-          </div>
+        <div class="page-header text-center">
+            <h1 class="mt-3">{{ zodiac_sign }}</h1>
+            <large class="gray">Today's rank:</large>
+            <h2 style="color:{{ details.color }};">{{ ordinal(details.rank) }}</h2>
         </div>
-        <div class="col-md-8">
-          <div class="card hoverdisabled" style="width: 100%;">
-            <h5 class="card-header">Horoscope</h5>
-            <div class="card-body">
-              <p class="card-text">{{ details.horoscope | safe }}</p>
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <div class="card text-black hoverdisabled">
+                    <img class="card-img-top"
+                         src="{{ zodiac_logo }}"
+                         alt="Card image" />
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">{{ zodiac_sign }}</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text">{{ details.date }}</p>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="card hoverdisabled" style="width: 100%;">
-            <h5 class="card-header">The Blunt Horoscope</h5>
-            <div class="card-body">
-              <p class="card-text">{{ details.blunt }}</p>
+            <div class="col-md-10">
+                <div class="card hoverdisabled"
+                     style="width: 100%;">
+                    <h5 class="card-header">Horoscope 🌟</h5>
+                    <div class="card-body">
+                        <p class="card-text">{{ details.horoscope | safe }}</p>
+                    </div>
+                </div>
+                <div class="card hoverdisabled mt-3"
+                     style="width: 100%;">
+                    <h5 class="card-header">Dad Joke of the Day 🤦</h5>
+                    <div class="card-body">
+                        <p class="card-text">{{ details.joke }}</p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-    <hr />
-  </div>
+    </div>
 </body>
 
 </html>
