@@ -196,6 +196,7 @@
                 "/" +
                 $(this)
                     .find(".card-title")
+                    // use html() instead of text() to improve performance
                     .html();
         });
     </script>
