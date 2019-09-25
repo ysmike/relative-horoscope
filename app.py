@@ -38,21 +38,6 @@ rank_colors = [
     "#AD0000",
 ]
 
-blunt_predictions = [
-    "Life is a jar of cookies. Have the good ones first and buy a new jar!",
-    "Don't give up your dreams & keep on sleeping ;)",
-    "Don't worry about life. Nobody survives it anyways!",
-    "Sing anything that is too stupid to be spoken. And you will have spoken it.",
-    "Don't half-ass two things. Whole-ass one thing. -Ron Swanson",
-    "Money can't buy you happiness, but at least you can be miserable in comfort.",
-    "When in doubt, j**k off and think again.",
-    "Phuq work hard and play hard. Work first and play later!",
-    "Don't make decisions without eating first. Follow this advice when choosing to eat.",
-    "Be medium. If both being high and being low are bad, what else can you do?",
-    "I hope you don't play hide and seek because no one will bother to look for you :(",
-    "If you tend to fail at first, perhaps try skydiving :)",
-]
-
 zodiac_cached = {}
 last_cached_date = None
 
@@ -68,40 +53,51 @@ def cache_horoscope():
         print("caching...")
 
         for sign in zodiac_signs.keys():
-            # fetch horoscope
+            # fetch horoscopes
             params = (("sign", f"{sign}"), ("day", "today"))
-            data = requests.post(
+            horoscope_data = requests.post(
                 "https://aztro.sameerkumar.website/", params=params
             ).json()
 
-            horoscope = f"""{data["description"]}<ul>
-                    <li>Mood: {data["mood"]}</li>
-                    <li>Lucky Time: {data["lucky_time"]}</li>
-                    <li>Lucky Number: {data["lucky_number"]}</li>
-                    <li>Color: {data["color"]}</li>
-                    <li>Compatibility: {data["compatibility"]}</li>
-                    </ul>"""
-
-            zodiac_cached[sign] = {"horoscope": horoscope, "date": zodiac_signs[sign]}
-
             # sentiment analysis
-            score = sithlord.polarity_scores(data["description"])
-            zodiac_cached[sign].update(score)
+            score = sithlord.polarity_scores(horoscope_data["description"])
+            zodiac_cached[sign] = score
 
             # use 'compound' score, an aggregate of 'positive', 'negative', and 'neutral'
             ranks.append((score["compound"], sign))
             print(sign, "...done")
 
+            horoscope = f"""{horoscope_data["description"]}<ul class="list-group list-group-flush">
+                    <li class="list-group-item">Sentiment Analysis Score: {zodiac_cached[sign]["compound"]}</li>
+                    <li class="list-group-item">Mood: {horoscope_data["mood"]}</li>
+                    <li class="list-group-item">Lucky Time: {horoscope_data["lucky_time"]}</li>
+                    <li class="list-group-item">Lucky Number: {horoscope_data["lucky_number"]}</li>
+                    <li class="list-group-item">Color: {horoscope_data["color"]}</li>
+                    <li class="list-group-item">Compatibility: {horoscope_data["compatibility"]}</li>
+                    </ul>"""
+
+            zodiac_cached[sign].update(
+                {"horoscope": horoscope, "date": zodiac_signs[sign]}
+            )
+
         # populate rank
         rank = 0
-        ranks.sort(key=lambda x: x[0])
+        ranks.sort(key=lambda x: x[0], reverse=True)
+
+        # fetch dad jokes
+        jokes_data = {}
+        while len(jokes_data) < 12:
+            joke = requests.get(
+                "https://icanhazdadjoke.com/", headers={"Accept": "application/json"}
+            ).json()
+            if joke["id"] not in jokes_data:
+                jokes_data[joke["id"]] = joke["joke"]
+        jokes = list(jokes_data.values())
+
+        # assign ranks, colors, dad jokes
         for _, sign in ranks:
             zodiac_cached[sign].update(
-                {
-                    "rank": rank + 1,
-                    "color": rank_colors[rank],
-                    "blunt": blunt_predictions[rank],
-                }
+                {"rank": rank + 1, "color": rank_colors[rank], "joke": jokes[rank]}
             )
             rank += 1
 
@@ -124,7 +120,7 @@ def horoscope(sign):
 
     # change numbers from cardinals to ordinals
     ordinal = (
-        lambda n: f"""{n}{ {1:"st",2:"nd",3:"rd"}.get(n if n<20 else n%10, "th") }"""
+        lambda n: f"""{n}{ {1:"st",2:"nd",3:"rd"}.get(n if n < 20 else n % 10, "th") }"""
     )
 
     # fetch horoscope from API
