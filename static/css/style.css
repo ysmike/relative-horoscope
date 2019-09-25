@@ -34,3 +34,7 @@ body {
   font-weight: bold;
   color: #0080ad;
 }
+
+.gray {
+  color: lightslategray;
+}
