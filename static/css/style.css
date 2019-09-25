@@ -19,7 +19,7 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.hoverdisabled:hover {
+.hover-disabled:hover {
   box-shadow: none;
   cursor: auto;
 }
@@ -37,4 +37,9 @@ body {
 
 .gray {
   color: lightslategray;
+}
+
+.social-media-links {
+  line-height: 11px;
+  text-align: center;
 }
