@@ -26,64 +26,70 @@
             src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0"></script>
 
     <!-- Beginning of the content -->
-    <div class="container">
-        <div class="page-header text-center">
-            <h1 class="mt-3">{{ zodiac_sign }}</h1>
-            <large class="gray">Today's rank:</large>
-            <h2 style="color:{{ details.color }}">{{ ordinal(details.rank) }}</h2>
+    <h1 class="mt-3 mb-3 text-center">{{ zodiac_sign }}</h1>
+    <div class="justify-content-center mb-3">
+        <div class="card hover-disabled"
+             style="margin: 0 auto">
+            <img class="card-img-top"
+                 src="{{ zodiac_logo }}"
+                 alt="Card image" />
+            <div class="card-footer text-center">
+                <p class="card-text">{{ details.date }}</p>
+            </div>
         </div>
-        <div class="row justify-content-md-center">
-            <div class="col-md-auto">
-                <div class="card text-black hover-disabled">
-                    <img class="card-img-top"
-                         src="{{ zodiac_logo }}"
-                         alt="Card image" />
-                    <div class="card-img-overlay">
-                        <h5 class="card-title">{{ zodiac_sign }}</h5>
-                    </div>
-                    <div class="card-footer text-center">
-                        <p class="card-text">{{ details.date }}</p>
-                    </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-3 text-center">
+            <large class="gray">Sentiment Analysis Score</large>
+            <br />
+            <large class="gray">(out of 100):</large>
+            <h2 style="color:{{ colorize(normalize(details.compound)) }};">{{ normalize(details.compound) }}</h2>
+        </div>
+        <div class="col-3 text-center"
+             style="border-left: 0.5px solid lightgray">
+            <large class="gray">Rank</large>
+            <br />
+            <large class="gray">(out of 12 zodiac signs):</large>
+            <h2 style="color:{{ details.color }};">{{ ordinal(details.rank) }}</h2>
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-md-10">
+            <div class="card hover-disabled"
+                 style="width: 100%;">
+                <h5 class="card-header">Horoscope 🌟</h5>
+                <div class="card-body">
+                    <p class="card-text">{{ details.horoscope | safe }}</p>
                 </div>
             </div>
-            <div class="col-md-10">
-                <div class="card hover-disabled"
-                     style="width: 100%;">
-                    <h5 class="card-header">Horoscope 🌟</h5>
-                    <div class="card-body">
-                        <p class="card-text">{{ details.horoscope | safe }}</p>
-                    </div>
+            <div class="card hover-disabled mt-3"
+                 style="width: 100%;">
+                <h5 class="card-header">Dad Joke of the Day 🤦</h5>
+                <div class="card-body">
+                    <p class="card-text">{{ details.joke }}</p>
                 </div>
-                <div class="card hover-disabled mt-3"
-                     style="width: 100%;">
-                    <h5 class="card-header">Dad Joke of the Day 🤦</h5>
-                    <div class="card-body">
-                        <p class="card-text">{{ details.joke }}</p>
-                    </div>
-                </div>
+            </div>
 
-                <div class="social-media-links">
-                    <!-- Facebook share button -->
-                    <!-- Todo: Change data-href to the correct domain -->
-                    <div class="fb-share-button"
-                         data-href="https://developers.facebook.com/docs/plugins/"
-                         data-layout="button"
-                         data-size="small">
-                        <a target="_blank"
-                           href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-                           class="fb-xfbml-parse-ignore">Share</a>
-                    </div>
-                    <!-- Twitter share button -->
-                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-                       class="twitter-share-button mt-3"
-                       data-show-count="false">Tweet</a>
-                    <script async
-                            src="https://platform.twitter.com/widgets.js"
-                            charset="utf-8"></script>
+            <div class="social-media-links">
+                <!-- Facebook share button -->
+                <!-- Todo: Change data-href to the correct domain -->
+                <div class="fb-share-button"
+                     data-href="https://relative-horoscope.herokuapp.com/"
+                     data-layout="button"
+                     data-size="small"><a target="_blank"
+                       href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frelative-horoscope.herokuapp.com%2F&amp;src=sdkpreparse"
+                       class="fb-xfbml-parse-ignore">Share</a>
                 </div>
+                <!-- Twitter share button -->
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+                   class="twitter-share-button mt-3"
+                   data-show-count="false">Tweet</a>
+                <script async
+                        src="https://platform.twitter.com/widgets.js"
+                        charset="utf-8"></script>
             </div>
         </div>
-        <hr />
+    </div>
     </div>
 </body>
 
