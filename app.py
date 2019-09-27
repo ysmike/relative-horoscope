@@ -7,37 +7,9 @@ import requests
 from flask import Flask, render_template, url_for
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
+import constants
+
 app = Flask(__name__)
-
-zodiac_signs = {
-    "Aries": "Mar 21 - Apr 19",
-    "Taurus": "Apr 20 - May 20",
-    "Gemini": "May 21 - June 20",
-    "Cancer": "June 21 - July 22",
-    "Leo": "July 23 - Aug 22",
-    "Virgo": "Aug 23 - Sept 22",
-    "Libra": "Sept 23 - Oct 22",
-    "Scorpio": "Oct 23 - Nov 21",
-    "Sagittarius": "Nov 22 - Dec 21",
-    "Capricorn": "Dec 22 - Jan 19",
-    "Aquarius": "Jan 20 - Feb 18",
-    "Pisces": "Feb 19 - Mar 20",
-}
-
-rank_colors = [
-    "#3A6C4D",
-    "#458257",
-    "#5A9951",
-    "#7EA95A",
-    "#A4C064",
-    "#E3EE77",
-    "#EEE277",
-    "#EBBC4F",
-    "#F1AC47",
-    "#F77023",
-    "#F86135",
-    "#AD0000",
-]
 
 zodiac_cached = {}
 last_cached_date = None
@@ -53,7 +25,7 @@ def cache_horoscope():
         sithlord = SentimentIntensityAnalyzer()
         print("caching...")
 
-        for sign in zodiac_signs.keys():
+        for sign in constants.zodiac_signs.keys():
             # fetch horoscopes
             params = (("sign", f"{sign}"), ("day", "today"))
             horoscope_data = requests.post(
@@ -69,7 +41,6 @@ def cache_horoscope():
             print(sign, "...done")
 
             horoscope = f"""{horoscope_data["description"]}<ul class="list-group list-group-flush">
-                    <li class="list-group-item">Sentiment Analysis Score: {zodiac_cached[sign]["compound"]}</li>
                     <li class="list-group-item">Mood: {horoscope_data["mood"]}</li>
                     <li class="list-group-item">Lucky Time: {horoscope_data["lucky_time"]}</li>
                     <li class="list-group-item">Lucky Number: {horoscope_data["lucky_number"]}</li>
@@ -78,7 +49,7 @@ def cache_horoscope():
                     </ul>"""
 
             zodiac_cached[sign].update(
-                {"horoscope": horoscope, "date": zodiac_signs[sign]}
+                {"horoscope": horoscope, "date": constants.zodiac_signs[sign]}
             )
 
         # populate rank
@@ -98,19 +69,23 @@ def cache_horoscope():
         # assign ranks, colors, dad jokes
         for _, sign in ranks:
             zodiac_cached[sign].update(
-                {"rank": rank + 1, "color": rank_colors[rank], "joke": jokes[rank]}
+                {
+                    "rank": rank + 1,
+                    "color": constants.ordinal_rank_colors[rank],
+                    "joke": jokes[rank],
+                }
             )
             rank += 1
 
         # save the cache date
         last_cached_date = str(datetime.date.today())
-        pprint(zodiac_cached)
+        # pprint(zodiac_cached)
 
 
 @app.route("/<sign>")
 def horoscope(sign):
     # check url
-    if sign not in zodiac_signs:
+    if sign not in constants.zodiac_signs:
         return json.dumps({"Message": "The provided sign does not exist!"})
 
     # get logo
@@ -124,6 +99,8 @@ def horoscope(sign):
         lambda n: f"""{n}{ {1:"st",2:"nd",3:"rd"}.get(n if n < 20 else n % 10, "th") }"""
     )
 
+    normalize = lambda n: int((((n - (-1)) * (100 - 0)) / (1 - (-1))) + 0)
+
     # fetch horoscope from API
     return render_template(
         "horoscope.html",
@@ -131,6 +108,8 @@ def horoscope(sign):
         zodiac_logo=logo,
         details=zodiac_cached[sign],
         ordinal=ordinal,
+        normalize=normalize,
+        colorize=constants.colorize,
     )
 
 
@@ -141,4 +120,4 @@ def index():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug=True)
