@@ -101,6 +101,12 @@ def horoscope(sign):
 
     normalize = lambda n: int((((n - (-1)) * (100 - 0)) / (1 - (-1))) + 0)
 
+    colorize = (
+        lambda n: constants.cardinal_rank_colors[-(n // 10 + 1)]
+        if n in range(101)
+        else None
+    )
+
     # fetch horoscope from API
     return render_template(
         "horoscope.html",
@@ -109,7 +115,7 @@ def horoscope(sign):
         details=zodiac_cached[sign],
         ordinal=ordinal,
         normalize=normalize,
-        colorize=constants.colorize,
+        colorize=colorize,
     )
 
 

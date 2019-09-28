@@ -40,8 +40,3 @@ cardinal_rank_colors = [
     "#fb5a49",
     "#AD0000",
 ]
-
-# Find matching color based on the sentiment analysis score
-def colorize(n):
-    if 0 <= n <= 100:
-        return cardinal_rank_colors[-(n // 10 + 1)]
