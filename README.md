@@ -1,8 +1,8 @@
 # 🔯 Relative Horoscope
 
 <a href="https://relative-horoscope.herokuapp.com" target="_blank" >**Relative Horoscope**</a> not only provides your typical
-daily forecast but also shows how your luck fares compared to the remaining zodiac signs. On top of this, each sign
-packs a dad joke which also updates daily so that you can leave the website with a hint of laughter (or an eye-roll 🙄).
+daily forecast but analyzes how your luck fares compared to the remaining zodiac signs. On top of this, each sign
+packs a dad joke which also updates daily so that you can leave the website with a hint of laughter (or perhaps an eye-roll 🙄).
 
 ## 🔨 Usage
 
