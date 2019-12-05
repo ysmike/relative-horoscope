@@ -1,3 +1,5 @@
+# Constant variables used for lookups
+
 zodiac_signs = {
     "Aries": "Mar 21 - Apr 19",
     "Taurus": "Apr 20 - May 20",
